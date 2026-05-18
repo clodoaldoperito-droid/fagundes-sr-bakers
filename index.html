@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sr Bakers - Pães Premium para Hamburguerias</title>
+    <meta name="description" content="Fagundes Comércio Atacadista de Pães - Fornecendo qualidade premium em pães artesanais para hamburguerias de alto padrão.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4a373;
+            --dark: #1a1a1a;
+            --light: #f9f9f9;
+            --white: #ffffff;
+            --grey: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+
+        /* Floating Button */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 1000;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
+
+        /* Header */
+        header {
+            background-color: var(--white); padding: 15px 5%; display: flex;
+            justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--dark); text-decoration: none; }
+        .logo span { color: var(--primary); }
+        
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: var(--dark); font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: var(--primary); }
+
+        .btn-order { background-color: var(--dark); color: var(--white); padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+        .btn-order:hover { background-color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            color: var(--white); padding: 0 10%;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 20px; line-height: 1.1; max-width: 800px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 40px; font-weight: 300; }
+        .hero .btn-order { background-color: var(--primary); font-size: 1.1rem; padding: 15px 35px; }
+        
+        /* Section Copy */
+        .section-copy { padding: 80px 10%; background: var(--white); text-align: center; }
+        .section-copy h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--dark); }
+        .section-copy p.lead { font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px; color: #555; }
+        
+        /* Catalog */
+        .catalog { padding: 80px 10%; background: var(--light); }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-content { padding: 25px; text-align: center; }
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
+        .card p { color: #666; margin-bottom: 20px; font-size: 0.95rem; }
+        .card-btn { display: inline-block; padding: 8px 15px; border: 2px solid var(--primary); color: var(--primary); text-decoration: none; font-weight: 600; border-radius: 5px; }
+        .card-btn:hover { background: var(--primary); color: var(--white); }
+
+        /* Logistics & FAQ */
+        .info-section { padding: 80px 10%; background: var(--white); display: flex; gap: 50px; flex-wrap: wrap; }
+        .info-block { flex: 1; min-width: 300px; }
+        .info-block h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; color: var(--primary); }
+        .info-block p { margin-bottom: 15px; color: #555; }
+        .faq-item { margin-bottom: 15px; border-bottom: 1px solid var(--grey); padding-bottom: 15px; }
+        .faq-item strong { display: block; margin-bottom: 5px; color: var(--dark); }
+
+        /* Footer */
+        footer { background-color: var(--dark); color: var(--white); padding: 60px 10% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-col h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 20px; color: var(--primary); }
+        .footer-col p, .footer-col a { color: #aaa; text-decoration: none; margin-bottom: 10px; display: block; }
+        .copyright { text-align: center; color: #666; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+            .hero { align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/5519987118737?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." class="whatsapp-float">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.507-.794-6.236-2.13l-.436-.345-3.065 1.028 1.028-3.065-.345-.436A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+    </a>
+
+    <header>
+        <a href="#inicio" class="logo"><img src="logo.jpg" alt="Sr Bakers" style="max-height: 60px;"></a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#logistica">Logística</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="contact-header">
+            <a href="https://wa.me/5519987118737" class="btn-order" target="_blank">Fazer Pedido</a>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <h1>Pães premium para hamburguerias de alto padrão.</h1>
+        <p>Unimos o cuidado do artesão à precisão da linha de produção para abastecer parceiros com o mesmo padrão, todos os dias.</p>
+        <a href="https://wa.me/5519987118737?text=Olá!%20Gostaria%20de%20um%20orçamento." class="btn-order" target="_blank">Faça um orçamento</a>
+    </section>
+
+    <section class="section-copy" id="sobre">
+        <h2>O pão é só um detalhe... Até estragar o lanche.</h2>
+        <p class="lead">Você investe no melhor blend de carnes, no queijo premium e no molho secreto. Mas se o pão esfarelar ou chegar amassado, a experiência do seu cliente termina ali.</p>
+        <p>Não é sorte. Não é intuição. O pão tem que chegar igual em todas as lojas, suportar calor, molho, montagem e ainda entregar sabor. Quem vive de hambúrguer sabe que quando o pão muda, o cliente percebe na hora.</p>
+    </section>
+
+    <section class="catalog" id="produtos">
+        <h2 class="section-title">Nossa linha de pães para hambúrguer</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1627308595229-7830f5c9280f?auto=format&fit=crop&w=600&q=80" alt="Pão Brioche">
+                <div class="card-content">
+                    <h3>Pão Brioche</h3>
+                    <p>Clássico, amanteigado e com estrutura perfeita para segurar os sucos da carne.</p>
+                    <a href="https://wa.me/5519987118737" class="card-btn">Ver detalhes</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1598142981600-4b35e076722d?auto=format&fit=crop&w=600&q=80" alt="Pão Australiano">
+                <div class="card-content">
+                    <h3>Pão Australiano</h3>
+                    <p>Sabor marcante e dulçor na medida certa para combinações com cheddar e bacon.</p>
+                    <a href="https://wa.me/5519987118737" class="card-btn">Ver detalhes</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Pão Artesanal Rustico">
+                <div class="card-content">
+                    <h3>Pão Artesanal Rústico</h3>
+                    <p>Fermentação prolongada, miolo macio e casca levemente crocante. O favorito das artesanais.</p>
+                    <a href="https://wa.me/5519987118737" class="card-btn">Ver detalhes</a>
+                </div>
+            </div>
+            <!-- Adicione mais conforme o catálogo real -->
+        </div>
+    </section>
+
+    <section class="info-section" id="logistica">
+        <div class="info-block">
+            <h2>Logística e Distribuição</h2>
+            <p><strong>Do nosso forno à porta da sua hamburgueria.</strong></p>
+            <p>Contamos com uma estrutura otimizada que leva o pão fresco até a porta da sua operação, com o padrão e a cadência que o seu cardápio exige.</p>
+            <p>Hoje atendemos Mogi Guaçu e região, garantindo que o produto chegue com a integridade e qualidade que sua operação precisa.</p>
+            <br>
+            <a href="https://wa.me/5519987118737" class="btn-order">Fale com o Comercial</a>
+        </div>
+        <div class="info-block" id="faq">
+            <h2>Dúvidas Frequentes</h2>
+            <div class="faq-item">
+                <strong>Qual a validade dos pães?</strong>
+                21 dias em temperatura ambiente. 90 dias congelado + 5 dias após descongelar (consulte as condições ideais).
+            </div>
+            <div class="faq-item">
+                <strong>Como é feita a entrega?</strong>
+                Entregamos em caixas padronizadas garantindo que o produto não chegue amassado.
+            </div>
+            <div class="faq-item">
+                <strong>Qual o prazo de entrega?</strong>
+                Depende da sua região — consulte o nosso time comercial para alinhar a rota da sua hamburgueria.
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Sr Bakers</h3>
+                <p>Transformando a panificação com alma artesanal.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Links Úteis</h3>
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre a Fábrica</a>
+                <a href="#produtos">Catálogo de Pães</a>
+                <a href="#logistica">Logística</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p>WhatsApp: (19) 98711-8737</p>
+                <p>Horário: Seg a Sex, horário comercial</p>
+            </div>
+            <div class="footer-col">
+                <h3>Endereço / Matriz</h3>
+                <p><strong>Fagundes Com. Atacadista de Pães</strong></p>
+                <p>CNPJ: 48.239.849/0001-49 | IE: 455.342.500.114</p>
+                <p>Rua Euclides T Pizza, 136 - Pq. Sao Camilo</p>
+                <p>Mogi Guaçu / SP - 13848-150</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Sr Bakers (Fagundes LTDA). Todos os direitos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
